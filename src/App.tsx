@@ -1,34 +1,282 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
+// Types for API responses
+interface Drug {
+  drugbank_id: string;
+  name: string;
+  generic_name: string;
+  brand_names: string[];
+  drug_class: string;
+  description: string;
+  match_score: number;
+  match_type: string;
+}
+
+interface SearchResponse {
+  query: string;
+  results: Drug[];
+  total_found: number;
+}
+
+interface SentimentData {
+  date: string;
+  positive: number;
+  neutral: number;
+  negative: number;
+}
+
+interface SentimentResponse {
+  drug_name: string;
+  sentiment_data: SentimentData[];
+  overall_sentiment: string;
+  sentiment_score: number;
+}
+
+interface Recommendation {
+  name: string;
+  similarity_score: number;
+  reason: string;
+}
+
+interface RecommendationResponse {
+  original_drug: string;
+  recommendations: Recommendation[];
+}
+
+interface SideEffect {
+  effect: string;
+  frequency: string;
+  severity: string;
+}
+
+interface SideEffectsResponse {
+  drug_name: string;
+  common_side_effects: SideEffect[];
+  serious_side_effects: SideEffect[];
+}
+
+const API_BASE = 'http://localhost:8000';
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState<Drug[]>([])
+  const [selectedDrug, setSelectedDrug] = useState<Drug | null>(null)
+  const [sentiment, setSentiment] = useState<SentimentResponse | null>(null)
+  const [recommendations, setRecommendations] = useState<RecommendationResponse | null>(null)
+  const [sideEffects, setSideEffects] = useState<SideEffectsResponse | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [activeTab, setActiveTab] = useState<'sentiment' | 'recommendations' | 'side-effects'>('sentiment')
+
+  const searchDrugs = async () => {
+    if (!searchQuery.trim()) return;
+    
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_BASE}/api/drugs/search?q=${encodeURIComponent(searchQuery)}`);
+      const data: SearchResponse = await response.json();
+      setSearchResults(data.results);
+    } catch (error) {
+      console.error('Search failed:', error);
+      alert('Search failed. Make sure the backend is running on port 8000.');
+    }
+    setLoading(false);
+  };
+
+  const selectDrug = async (drug: Drug) => {
+    setSelectedDrug(drug);
+    setLoading(true);
+    
+    try {
+      // Fetch all drug details in parallel
+      const [sentimentRes, recommendationsRes, sideEffectsRes] = await Promise.all([
+        fetch(`${API_BASE}/api/drugs/sentiment?drug_name=${encodeURIComponent(drug.name)}`),
+        fetch(`${API_BASE}/api/drugs/recommend?drug_name=${encodeURIComponent(drug.name)}`),
+        fetch(`${API_BASE}/api/drugs/side-effects?drug_name=${encodeURIComponent(drug.name)}`)
+      ]);
+
+      const [sentimentData, recommendationsData, sideEffectsData] = await Promise.all([
+        sentimentRes.json(),
+        recommendationsRes.json(),
+        sideEffectsRes.json()
+      ]);
+
+      setSentiment(sentimentData);
+      setRecommendations(recommendationsData);
+      setSideEffects(sideEffectsData);
+    } catch (error) {
+      console.error('Failed to fetch drug details:', error);
+      alert('Failed to fetch drug details');
+    }
+    setLoading(false);
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    searchDrugs();
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app">
+      <header className="app-header">
+        <div className="app-header-content">
+          <h1>RxU</h1>
+          <p className="app-header-description">RxU is a tool that helps you find the best drug for your needs.</p>
+        </div>
+      </header>
+
+      <main className="app-main">
+        {/* Search Section */}
+        <section className="search-section">
+          <form onSubmit={handleSearch} className="search-form">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search for a drug..."
+              className="search-input"
+            />
+            <button type="submit" disabled={loading} className="search-button">
+              {loading ? 'Searching...' : 'Search'}
+            </button>
+          </form>
+        </section>
+
+        {/* Search Results */}
+        {searchResults.length > 0 && (
+          <section className="results-section">
+            <h2>Search Results ({searchResults.length} found)</h2>
+            <div className="drug-grid">
+              {searchResults.map((drug) => (
+                <div
+                  key={drug.drugbank_id}
+                  className={`drug-card ${selectedDrug?.drugbank_id === drug.drugbank_id ? 'selected' : ''}`}
+                  onClick={() => selectDrug(drug)}
+                >
+                  <h3>{drug.name}</h3>
+                  <p className="generic-name">{drug.generic_name}</p>
+                  <p className="drug-class">{drug.drug_class}</p>
+                  <div className="match-info">
+                    <span className="match-type">{drug.match_type}</span>
+                    <span className="match-score">{drug.match_score}% match</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Drug Details */}
+        {selectedDrug && (
+          <section className="details-section">
+            <h2>Drug Details: {selectedDrug.name}</h2>
+            <div className="drug-info">
+              <p><strong>Generic Name:</strong> {selectedDrug.generic_name}</p>
+              <p><strong>Drug Class:</strong> {selectedDrug.drug_class}</p>
+              <p><strong>Description:</strong> {selectedDrug.description}</p>
+              {selectedDrug.brand_names.length > 0 && (
+                <p><strong>Brand Names:</strong> {selectedDrug.brand_names.join(', ')}</p>
+              )}
+            </div>
+
+            {/* Tabs */}
+            <div className="tabs">
+              <button 
+                className={`tab ${activeTab === 'sentiment' ? 'active' : ''}`}
+                onClick={() => setActiveTab('sentiment')}
+              >
+                Sentiment Analysis
+              </button>
+              <button 
+                className={`tab ${activeTab === 'recommendations' ? 'active' : ''}`}
+                onClick={() => setActiveTab('recommendations')}
+              >
+                Recommendations
+              </button>
+              <button 
+                className={`tab ${activeTab === 'side-effects' ? 'active' : ''}`}
+                onClick={() => setActiveTab('side-effects')}
+              >
+                Side Effects
+              </button>
+            </div>
+
+            {/* Tab Content */}
+            <div className="tab-content">
+              {activeTab === 'sentiment' && sentiment && (
+                <div className="sentiment-content">
+                  <h3>Sentiment Analysis</h3>
+                  <div className="sentiment-overview">
+                    <p><strong>Overall Sentiment:</strong> {sentiment.overall_sentiment}</p>
+                    <p><strong>Sentiment Score:</strong> {(sentiment.sentiment_score * 100).toFixed(1)}%</p>
+                  </div>
+                  <div className="sentiment-data">
+                    <h4>Recent Sentiment Trends</h4>
+                    {sentiment.sentiment_data.map((data, index) => (
+                      <div key={index} className="sentiment-day">
+                        <span className="date">{data.date}</span>
+                        <div className="sentiment-bars">
+                          <div className="sentiment-bar positive" style={{width: `${data.positive * 100}%`}}>
+                            Positive: {(data.positive * 100).toFixed(1)}%
+                          </div>
+                          <div className="sentiment-bar neutral" style={{width: `${data.neutral * 100}%`}}>
+                            Neutral: {(data.neutral * 100).toFixed(1)}%
+                          </div>
+                          <div className="sentiment-bar negative" style={{width: `${data.negative * 100}%`}}>
+                            Negative: {(data.negative * 100).toFixed(1)}%
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'recommendations' && recommendations && (
+                <div className="recommendations-content">
+                  <h3>Alternative Recommendations</h3>
+                  {recommendations.recommendations.map((rec, index) => (
+                    <div key={index} className="recommendation-card">
+                      <h4>{rec.name}</h4>
+                      <p className="similarity">Similarity: {(rec.similarity_score * 100).toFixed(1)}%</p>
+                      <p className="reason">{rec.reason}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {activeTab === 'side-effects' && sideEffects && (
+                <div className="side-effects-content">
+                  <h3>Side Effects</h3>
+                  
+                  <div className="side-effects-group">
+                    <h4>Common Side Effects</h4>
+                    {sideEffects.common_side_effects.map((effect, index) => (
+                      <div key={index} className="side-effect">
+                        <span className="effect-name">{effect.effect}</span>
+                        <span className={`frequency ${effect.frequency}`}>{effect.frequency}</span>
+                        <span className={`severity ${effect.severity}`}>{effect.severity}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="side-effects-group">
+                    <h4>Serious Side Effects</h4>
+                    {sideEffects.serious_side_effects.map((effect, index) => (
+                      <div key={index} className="side-effect serious">
+                        <span className="effect-name">{effect.effect}</span>
+                        <span className={`frequency ${effect.frequency}`}>{effect.frequency}</span>
+                        <span className={`severity ${effect.severity}`}>{effect.severity}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+      </main>
+    </div>
   )
 }
 

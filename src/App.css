@@ -1,42 +1,479 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background-color: #fafafa;
+}
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+  outline: 1px solid red;
+}
+
+.app-header {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 3rem 2rem;
   text-align: center;
+  border-radius: 0 0 24px 24px;
+  width: 100%;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app-header-content {
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.app-header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.app-header-description {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Main content */
+.app-main {
+  padding: 3rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Search section */
+.search-section {
+  margin-bottom: 3rem;
+}
+
+.search-form {
+  display: flex;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-input {
+  color: black;
+  flex: 1;
+  padding: 1.25rem 1.5rem;
+  border: 2px solid #e5e5e5;
+  border-radius: 16px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #1a1a1a;
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+}
+
+.search-button {
+  padding: 1.25rem 2rem;
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-button:hover:not(:disabled) {
+  background-color: #333333;
+  transform: translateY(-1px);
+}
+
+.search-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Results section */
+.results-section {
+  margin-bottom: 3rem;
+}
+
+.results-section h2 {
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.drug-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.drug-card {
+  background: #ffffff;
+  border: 2px solid #f0f0f0;
+  border-radius: 20px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drug-card:hover {
+  border-color: #e0e0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.drug-card.selected {
+  border-color: #1a1a1a;
+  background-color: #fafafa;
+}
+
+.drug-card h3 {
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.drug-card .generic-name {
+  color: #666666;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.drug-card .drug-class {
+  color: #888888;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.match-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.match-type {
+  background-color: #f0f0f0;
+  color: #1a1a1a;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.match-score {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* Details section */
+.details-section {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 3rem;
+  border: 2px solid #f0f0f0;
+}
+
+.details-section h2 {
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.drug-info {
+  background: #fafafa;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 3rem;
+}
+
+.drug-info p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.drug-info strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  background-color: #f5f5f5;
+  padding: 0.5rem;
+  border-radius: 16px;
+}
+
+.tab {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #666666;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.tab:hover {
+  color: #1a1a1a;
+}
+
+.tab.active {
+  color: #1a1a1a;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tab content */
+.tab-content {
+  min-height: 300px;
+}
+
+/* Sentiment content */
+.sentiment-content h3,
+.recommendations-content h3,
+.side-effects-content h3 {
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.sentiment-overview {
+  background: #fafafa;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+}
+
+.sentiment-overview p {
+  margin-bottom: 0.5rem;
+}
+
+.sentiment-data h4 {
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.sentiment-day {
+  margin-bottom: 1.5rem;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 2px solid #f0f0f0;
+}
+
+.sentiment-day .date {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.sentiment-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sentiment-bar {
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+  min-width: 150px;
+}
+
+.sentiment-bar.positive {
+  background-color: #10b981;
+}
+
+.sentiment-bar.neutral {
+  background-color: #6b7280;
+}
+
+.sentiment-bar.negative {
+  background-color: #ef4444;
+}
+
+/* Recommendations */
+.recommendation-card {
+  background: #fafafa;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  border: 2px solid #f0f0f0;
+}
+
+.recommendation-card h4 {
+  color: #1a1a1a;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.recommendation-card .similarity {
+  color: #1a1a1a;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.recommendation-card .reason {
+  color: #666666;
+  line-height: 1.6;
+}
+
+/* Side effects */
+.side-effects-group {
+  margin-bottom: 2rem;
+}
+
+.side-effects-group h4 {
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.side-effect {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: #fafafa;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+  border: 2px solid #f0f0f0;
+}
+
+.side-effect.serious {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.effect-name {
+  flex: 1;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.frequency,
+.severity {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-left: 0.75rem;
+}
+
+.frequency.common {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.frequency.uncommon {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.frequency.rare {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.severity.mild {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.severity.moderate {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.severity.severe {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app-main {
+    padding: 2rem 1rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .app-header {
+    padding: 2rem 1rem;
+    border-radius: 0 0 16px 16px;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  
+  .app-header h1 {
+    font-size: 2rem;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  
+  .search-form {
+    flex-direction: column;
+  }
+  
+  .drug-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .details-section {
+    padding: 2rem;
+  }
+  
+  .tabs {
+    flex-direction: column;
+    gap: 0;
+    background: transparent;
+    padding: 0;
+  }
+  
+  .tab {
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    background-color: #f5f5f5;
+  }
+  
+  .tab.active {
+    background-color: #1a1a1a;
+    color: white;
+  }
+  
+  .side-effect {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .frequency,
+  .severity {
+    margin-left: 0;
+  }
 }
