@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import './App.css'
+import { SentimentTrendChart, SentimentDistribution } from './components/SentimentChart'
+import { SentimentSummary } from './components/SentimentSummary'
+import { LoadingSpinner } from './components/LoadingSpinner'
 
 // Types for API responses
 interface Drug {
@@ -205,29 +208,68 @@ function App() {
             <div className="tab-content">
               {activeTab === 'sentiment' && sentiment && (
                 <div className="sentiment-content">
-                  <h3>Sentiment Analysis</h3>
-                  <div className="sentiment-overview">
-                    <p><strong>Overall Sentiment:</strong> {sentiment.overall_sentiment}</p>
-                    <p><strong>Sentiment Score:</strong> {(sentiment.sentiment_score * 100).toFixed(1)}%</p>
+                  <SentimentSummary
+                    overallSentiment={sentiment.overall_sentiment}
+                    sentimentScore={sentiment.sentiment_score}
+                    data={sentiment.sentiment_data}
+                    drugName={selectedDrug.name}
+                  />
+                  
+                  <div className="sentiment-charts-grid">
+                    <div className="chart-section">
+                      <SentimentTrendChart
+                        data={sentiment.sentiment_data}
+                        drugName={selectedDrug.name}
+                      />
+                    </div>
+                    
+                    <div className="chart-section">
+                      <SentimentDistribution
+                        data={sentiment.sentiment_data}
+                      />
+                    </div>
                   </div>
-                  <div className="sentiment-data">
-                    <h4>Recent Sentiment Trends</h4>
-                    {sentiment.sentiment_data.map((data, index) => (
-                      <div key={index} className="sentiment-day">
-                        <span className="date">{data.date}</span>
-                        <div className="sentiment-bars">
-                          <div className="sentiment-bar positive" style={{width: `${data.positive * 100}%`}}>
-                            Positive: {(data.positive * 100).toFixed(1)}%
-                          </div>
-                          <div className="sentiment-bar neutral" style={{width: `${data.neutral * 100}%`}}>
-                            Neutral: {(data.neutral * 100).toFixed(1)}%
-                          </div>
-                          <div className="sentiment-bar negative" style={{width: `${data.negative * 100}%`}}>
-                            Negative: {(data.negative * 100).toFixed(1)}%
+                  
+                  {/* Fallback: Keep original data display for reference */}
+                  <details className="sentiment-raw-data">
+                    <summary>View Raw Sentiment Data</summary>
+                    <div className="sentiment-data">
+                      {sentiment.sentiment_data.map((data, index) => (
+                        <div key={index} className="sentiment-day">
+                          <span className="date">{data.date}</span>
+                          <div className="sentiment-bars">
+                            <div className="sentiment-bar positive" style={{width: `${data.positive * 100}%`}}>
+                              Positive: {(data.positive * 100).toFixed(1)}%
+                            </div>
+                            <div className="sentiment-bar neutral" style={{width: `${data.neutral * 100}%`}}>
+                              Neutral: {(data.neutral * 100).toFixed(1)}%
+                            </div>
+                            <div className="sentiment-bar negative" style={{width: `${data.negative * 100}%`}}>
+                              Negative: {(data.negative * 100).toFixed(1)}%
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                  </details>
+                </div>
+              )}
+
+              {activeTab === 'sentiment' && loading && (
+                <div className="sentiment-content">
+                  <LoadingSpinner 
+                    message="Analyzing sentiment data..." 
+                    size="large"
+                  />
+                </div>
+              )}
+
+              {activeTab === 'sentiment' && !sentiment && !loading && selectedDrug && (
+                <div className="sentiment-content">
+                  <div className="empty-state">
+                    <h3>No Sentiment Data Available</h3>
+                    <p>We couldn't find sentiment analysis data for {selectedDrug.name}.</p>
+                    <p>This could be due to limited social media mentions or data processing issues.</p>
                   </div>
                 </div>
               )}
