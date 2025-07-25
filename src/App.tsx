@@ -3,61 +3,7 @@ import './App.css'
 import { SentimentTrendChart, SentimentDistribution } from './components/SentimentChart'
 import { SentimentSummary } from './components/SentimentSummary'
 import { LoadingSpinner } from './components/LoadingSpinner'
-
-// Types for API responses
-interface Drug {
-  drugbank_id: string;
-  name: string;
-  generic_name: string;
-  brand_names: string[];
-  drug_class: string;
-  description: string;
-  match_score: number;
-  match_type: string;
-}
-
-interface SearchResponse {
-  query: string;
-  results: Drug[];
-  total_found: number;
-}
-
-interface SentimentData {
-  date: string;
-  positive: number;
-  neutral: number;
-  negative: number;
-}
-
-interface SentimentResponse {
-  drug_name: string;
-  sentiment_data: SentimentData[];
-  overall_sentiment: string;
-  sentiment_score: number;
-}
-
-interface Recommendation {
-  name: string;
-  similarity_score: number;
-  reason: string;
-}
-
-interface RecommendationResponse {
-  original_drug: string;
-  recommendations: Recommendation[];
-}
-
-interface SideEffect {
-  effect: string;
-  frequency: string;
-  severity: string;
-}
-
-interface SideEffectsResponse {
-  drug_name: string;
-  common_side_effects: SideEffect[];
-  serious_side_effects: SideEffect[];
-}
+import type { Drug, SearchResponse, SentimentResponse, Recommendation, RecommendationResponse, SideEffect, SideEffectsResponse } from './types/ApiTypes';
 
 const API_BASE = 'http://localhost:8000';
 

@@ -12,16 +12,10 @@ import {
   Pie,
   Cell
 } from 'recharts';
-
-interface SentimentData {
-  date: string;
-  positive: number;
-  neutral: number;
-  negative: number;
-}
+import type { SentimentDataPoint } from '../types/SentimentDataPoint';
 
 interface SentimentChartProps {
-  data: SentimentData[];
+  data: SentimentDataPoint[];
   drugName: string;
 }
 
@@ -34,7 +28,8 @@ export const SentimentTrendChart: React.FC<SentimentChartProps> = ({ data, drugN
     }),
     Positive: Math.round(item.positive * 100),
     Neutral: Math.round(item.neutral * 100),
-    Negative: Math.round(item.negative * 100)
+    Negative: Math.round(item.negative * 100),
+    post_count: item.post_count
   }));
 
   return (
@@ -95,7 +90,7 @@ export const SentimentTrendChart: React.FC<SentimentChartProps> = ({ data, drugN
 };
 
 interface SentimentDistributionProps {
-  data: SentimentData[];
+  data: SentimentDataPoint[];
 }
 
 export const SentimentDistribution: React.FC<SentimentDistributionProps> = ({ data }) => {

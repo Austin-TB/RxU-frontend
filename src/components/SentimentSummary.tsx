@@ -1,16 +1,10 @@
 import React from 'react';
-
-interface SentimentData {
-  date: string;
-  positive: number;
-  neutral: number;
-  negative: number;
-}
+import type { SentimentDataPoint } from '../types/SentimentDataPoint';
 
 interface SentimentSummaryProps {
   overallSentiment: string;
   sentimentScore: number;
-  data: SentimentData[];
+  data: SentimentDataPoint[];
   drugName: string;
 }
 
