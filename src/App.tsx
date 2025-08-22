@@ -3,6 +3,7 @@ import './App.css'
 import { SentimentTrendChart, SentimentDistribution } from './components/SentimentChart'
 import { SentimentSummary } from './components/SentimentSummary'
 import { LoadingSpinner } from './components/LoadingSpinner'
+import { AutocompleteInput } from './components/AutocompleteInput'
 import type { Drug, SearchResponse, SentimentResponse, Recommendation, RecommendationResponse, SideEffect, SideEffectsResponse } from './types/ApiTypes';
 
 const API_BASE = 'http://localhost:8000';
@@ -78,12 +79,13 @@ function App() {
         {/* Search Section */}
         <section className="search-section">
           <form onSubmit={handleSearch} className="search-form">
-            <input
-              type="text"
+            <AutocompleteInput
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={setSearchQuery}
+              onSubmit={searchDrugs}
               placeholder="Search for a drug..."
               className="search-input"
+              disabled={loading}
             />
             <button type="submit" disabled={loading} className="search-button">
               {loading ? 'Searching...' : 'Search'}
