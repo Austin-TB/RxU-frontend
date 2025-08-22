@@ -119,26 +119,6 @@ export const SentimentSummary: React.FC<SentimentSummaryProps> = ({
           </div>
         </div>
       </div>
-
-      <div className="sentiment-gauge">
-        <h4>Sentiment Score Gauge</h4>
-        <div className="gauge-container">
-          <div className="gauge-track">
-            <div 
-              className="gauge-fill"
-              style={{ 
-                width: `${sentimentScore * 100}%`,
-                backgroundColor: getSentimentColor(overallSentiment)
-              }}
-            ></div>
-          </div>
-          <div className="gauge-labels">
-            <span>0%</span>
-            <span>50%</span>
-            <span>100%</span>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }; 
