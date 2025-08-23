@@ -11,8 +11,7 @@ interface SentimentSummaryProps {
 export const SentimentSummary: React.FC<SentimentSummaryProps> = ({
   overallSentiment,
   sentimentScore,
-  data,
-  drugName
+  data
 }) => {
   // Calculate additional metrics
   const latestData = data[data.length - 1];

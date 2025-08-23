@@ -93,7 +93,7 @@ export const AutocompleteInput: React.FC<AutocompleteInputProps> = ({
     }
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = () => {
     // Delay hiding suggestions to allow for suggestion clicks
     setTimeout(() => {
       setShowSuggestions(false);
