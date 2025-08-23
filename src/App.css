@@ -2,6 +2,13 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* Improve scroll performance on mobile */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -11,6 +18,10 @@ body {
   background-color: #fff8f0;
   margin: 0;
   padding: 0;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+  /* Improve touch scrolling */
+  -webkit-overflow-scrolling: touch;
 }
 
 .app {
@@ -108,6 +119,11 @@ body {
   transition: all 0.2s ease;
   background-color: #ffffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* Improve touch targets */
+  min-height: 44px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .search-input:focus {
@@ -128,11 +144,19 @@ body {
   transition: all 0.2s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   white-space: nowrap;
+  /* Improve touch targets */
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .search-button:hover:not(:disabled) {
   background-color: #333333;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.search-button:active:not(:disabled) {
+  transform: translateY(1px);
 }
 
 .search-button:disabled {
@@ -171,9 +195,21 @@ body {
   background: transparent;
   font-size: 1rem;
   color: #0f172a;
+  /* Improve touch targets */
+  min-height: 44px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-.pill-input:focus { outline: none; }
+.pill-input:focus { 
+  outline: none; 
+}
+
+.pill-input::placeholder {
+  color: #6b7280;
+  opacity: 1;
+}
 
 .pill-button {
   padding: 0.85rem 1.25rem;
@@ -186,10 +222,26 @@ body {
   cursor: pointer;
   transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease;
   box-shadow: 0 6px 14px rgba(29, 78, 216, 0.25);
+  /* Improve touch targets */
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
-.pill-button:hover { background: #1e40af; box-shadow: 0 8px 16px rgba(29, 78, 216, 0.3); }
-.pill-button:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; }
+.pill-button:hover:not(:disabled) { 
+  background: #1e40af; 
+  box-shadow: 0 8px 16px rgba(29, 78, 216, 0.3); 
+}
+
+.pill-button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.pill-button:disabled { 
+  opacity: 0.6; 
+  cursor: not-allowed; 
+  box-shadow: none; 
+}
 
 /* Results section */
 .results-section {
@@ -221,11 +273,18 @@ body {
   padding: 1.5rem;
   cursor: pointer;
   transition: all 0.2s ease;
+  /* Improve touch targets */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .drug-card:hover {
   border-color: #d1d5db;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.drug-card:active {
+  transform: scale(0.98);
 }
 
 .drug-card.selected {
@@ -330,10 +389,18 @@ body {
   border-radius: 8px;
   transition: all 0.2s ease;
   font-weight: 500;
+  /* Improve touch targets */
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .tab:hover {
   color: #1a1a1a;
+}
+
+.tab:active {
+  transform: scale(0.95);
 }
 
 .tab.active {
@@ -460,6 +527,9 @@ body {
 .sentiment-trend-chart,
 .sentiment-distribution {
   width: 100%;
+  min-height: 250px;
+  /* Ensure chart responsiveness */
+  overflow: hidden;
 }
 
 .sentiment-trend-chart h4,
@@ -468,6 +538,33 @@ body {
   margin-bottom: 1rem;
   font-size: 1.1rem;
   font-weight: 600;
+}
+
+/* Chart responsive adjustments */
+@media (max-width: 768px) {
+  .sentiment-trend-chart,
+  .sentiment-distribution {
+    min-height: 200px;
+  }
+  
+  .sentiment-trend-chart h4,
+  .sentiment-distribution h4 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sentiment-trend-chart,
+  .sentiment-distribution {
+    min-height: 180px;
+  }
+  
+  .sentiment-trend-chart h4,
+  .sentiment-distribution h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
 /* Raw Data Collapsible */
@@ -732,6 +829,80 @@ body {
 }
 
 /* Responsive design */
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .app-main {
+    padding: 0 0.75rem 1.5rem 0.75rem;
+  }
+  
+  .app-header {
+    padding: 1.5rem 0 2rem 0;
+  }
+  
+  .app-header-content {
+    padding: 0 0.75rem;
+  }
+  
+  .app-header-top {
+    padding: 0 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .brand-name {
+    font-size: 1rem;
+    padding: 0.3rem 0.7rem;
+  }
+  
+  .hero-title { 
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+  
+  .app-header-description {
+    font-size: 0.95rem;
+    padding: 0 1rem;
+  }
+  
+  .search-pill { 
+    padding: 0.3rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .pill-input {
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+  
+  .pill-button { 
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin: 0;
+  }
+  
+  .results-section,
+  .details-section {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .results-section h2,
+  .details-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .drug-card {
+    padding: 1rem;
+  }
+  
+  .drug-card h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Mobile devices */
 @media (max-width: 768px) {
   .app-main {
     padding: 0 1rem 2rem 1rem;
@@ -741,15 +912,23 @@ body {
     padding: 2rem 0 2.5rem 0;
   }
   
+  .app-header-content {
+    padding: 0 1rem;
+  }
+  
   .app-header-top {
     padding: 0 1rem;
     margin-bottom: 2rem;
   }
   
-  .hero-title { font-size: 2rem; }
+  .hero-title { 
+    font-size: 2.2rem;
+    line-height: 1.15;
+  }
   
   .app-header-description {
     font-size: 1rem;
+    padding: 0 0.5rem;
   }
   
   .search-section {
@@ -761,9 +940,19 @@ body {
     padding: 1.5rem;
   }
   
-  .search-form { flex-direction: column; }
-  .search-pill { padding: 0.4rem; }
-  .pill-button { width: 100%; margin-top: 0.4rem; }
+  .search-form { 
+    flex-direction: column; 
+    gap: 1rem;
+  }
+  
+  .search-pill { 
+    padding: 0.4rem;
+  }
+  
+  .pill-button { 
+    width: 100%; 
+    margin-top: 0.4rem; 
+  }
   
   .hero-search {
     max-width: 100%;
@@ -771,23 +960,26 @@ body {
   
   .drug-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .details-section {
-    padding: 2rem;
+    padding: 1.5rem;
   }
   
   .tabs {
     flex-direction: column;
-    gap: 0;
+    gap: 0.5rem;
     background: transparent;
     padding: 0;
   }
   
   .tab {
     border-radius: 12px;
-    margin-bottom: 0.5rem;
-    background-color: #f5f5f5;
+    padding: 1rem;
+    background-color: #f8fafc;
+    border: 1px solid #e5e5e5;
+    text-align: center;
   }
   
   .tab.active {
@@ -804,6 +996,71 @@ body {
   .frequency,
   .severity {
     margin-left: 0;
+  }
+  
+  .match-info {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .sentiment-charts-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .sentiment-summary-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Tablet devices */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .app-header-content {
+    padding: 0 2rem;
+  }
+  
+  .app-main {
+    padding: 0 2rem 3rem 2rem;
+  }
+  
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  
+  .drug-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  
+  .sentiment-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tabs {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .tab {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+/* Large tablets and small laptops */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .app-header-content {
+    max-width: 900px;
+  }
+  
+  .app-main {
+    max-width: 1200px;
+  }
+  
+  .drug-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -834,6 +1091,10 @@ body {
   border-bottom: 1px solid #f3f4f6;
   transition: background-color 0.15s ease;
   font-size: 0.95rem;
+  /* Improve touch targets */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 .autocomplete-suggestion:hover,
@@ -849,6 +1110,41 @@ body {
   background-color: #fef3c7;
   color: #92400e;
   font-weight: 600;
+}
+
+/* Mobile autocomplete improvements */
+@media (max-width: 768px) {
+  .autocomplete-suggestions {
+    max-height: 250px;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .autocomplete-suggestion {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    min-height: 48px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .autocomplete-suggestion:active {
+    background-color: #e5e7eb;
+  }
+}
+
+@media (max-width: 480px) {
+  .autocomplete-suggestions {
+    max-height: 200px;
+    left: -0.5rem;
+    right: -0.5rem;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  .autocomplete-suggestion {
+    padding: 1.25rem 1.5rem;
+    min-height: 52px;
+    font-size: 1.05rem;
+  }
 }
 
 /* Ensure search input works well with autocomplete */
@@ -868,4 +1164,404 @@ body {
 
 .search-form:has(.autocomplete-suggestions) .search-input {
   border-radius: 12px 0 0 0;
+}
+
+/* Drug Summary Styles */
+.drug-summary-content {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.summary-overview {
+  margin-bottom: 2rem;
+}
+
+.summary-overview h3 {
+  color: #1f2937;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.summary-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  min-width: 100px;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+.summary-text {
+  color: #4b5563;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.summary-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.summary-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.summary-section h4 {
+  color: #1f2937;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.summary-section h5 {
+  color: #374151;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+/* Sentiment Bars */
+.sentiment-bars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sentiment-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sentiment-label {
+  min-width: 80px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.sentiment-bar-track {
+  flex: 1;
+  height: 24px;
+  background: #f3f4f6;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.sentiment-bar-fill {
+  height: 100%;
+  border-radius: 12px;
+  transition: width 0.3s ease;
+}
+
+.sentiment-value {
+  min-width: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  text-align: right;
+}
+
+/* Themes */
+.themes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.theme-tag {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 0.375rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid #bfdbfe;
+}
+
+/* Communities */
+.communities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.community-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.community-name {
+  font-weight: 500;
+  color: #374151;
+}
+
+.community-count {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Experiences */
+.experiences-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.experience-group {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.experience-title {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid;
+}
+
+.experience-title.positive {
+  color: #059669;
+  border-color: #d1fae5;
+}
+
+.experience-title.negative {
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.experience-item {
+  margin-bottom: 0.75rem;
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid;
+}
+
+.experience-item:last-child {
+  margin-bottom: 0;
+}
+
+.experience-item.positive {
+  background: #f0fdf4;
+  border-color: #22c55e;
+}
+
+.experience-item.negative {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+
+.experience-item p {
+  margin: 0;
+  color: #374151;
+  line-height: 1.6;
+  font-size: 0.875rem;
+}
+
+/* Footer */
+.summary-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.analysis-note {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-align: center;
+  margin: 0;
+}
+
+/* Error state */
+.error-state {
+  text-align: center;
+  padding: 2rem;
+  color: #dc2626;
+}
+
+.error-state h3 {
+  color: #dc2626;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive design for drug summary */
+@media (max-width: 480px) {
+  .drug-summary-content {
+    padding: 1rem;
+  }
+  
+  .summary-overview h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .summary-stats {
+    gap: 0.75rem;
+    justify-content: center;
+  }
+  
+  .stat-item {
+    min-width: 70px;
+    padding: 0.75rem 0.5rem;
+    flex: 1;
+  }
+  
+  .stat-value {
+    font-size: 1.25rem;
+  }
+  
+  .stat-label {
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+  
+  .summary-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .summary-section h5 {
+    font-size: 0.95rem;
+  }
+  
+  .themes-container {
+    gap: 0.375rem;
+  }
+  
+  .theme-tag {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.6rem;
+  }
+  
+  .sentiment-bar-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.375rem;
+  }
+  
+  .sentiment-label {
+    min-width: auto;
+    font-size: 0.8rem;
+  }
+  
+  .sentiment-value {
+    text-align: left;
+    font-size: 0.8rem;
+  }
+  
+  .sentiment-bar-track {
+    height: 20px;
+  }
+  
+  .community-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.375rem;
+    padding: 0.625rem;
+  }
+  
+  .community-name {
+    font-size: 0.9rem;
+  }
+  
+  .community-count {
+    font-size: 0.8rem;
+  }
+  
+  .experience-item {
+    padding: 0.75rem;
+    border-left-width: 3px;
+  }
+  
+  .experience-item p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  
+  .analysis-note {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .summary-stats {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .stat-item {
+    min-width: 80px;
+    padding: 0.75rem;
+    flex: 1;
+    max-width: 120px;
+  }
+  
+  .sentiment-bar-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .sentiment-label {
+    min-width: auto;
+  }
+  
+  .sentiment-value {
+    text-align: left;
+  }
+  
+  .community-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .themes-container {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .summary-stats {
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  
+  .stat-item {
+    min-width: 100px;
+  }
 }

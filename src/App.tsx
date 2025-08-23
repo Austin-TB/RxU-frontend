@@ -4,10 +4,14 @@ import { SentimentTrendChart, SentimentDistribution } from './components/Sentime
 import { SentimentSummary } from './components/SentimentSummary'
 import { LoadingSpinner } from './components/LoadingSpinner'
 import { AutocompleteInput } from './components/AutocompleteInput'
-import type { Drug, SearchResponse, SentimentResponse, RecommendationResponse, SideEffectsResponse } from './types/ApiTypes';
+import { DrugSummary } from './components/DrugSummary'
+import type { Drug, SearchResponse, SentimentResponse, RecommendationResponse, SideEffectsResponse, DrugSummaryData, DrugSummariesData } from './types/ApiTypes';
 
-const API_BASE = 'https://rxuu-backend-306624049631.europe-west1.run.app';
-// const API_BASE = 'http://localhost:8080';
+// Import the drug summaries JSON data
+import drugSummariesData from './data/drug_social_media_summaries.json';
+
+// const API_BASE = 'https://rxuu-backend-306624049631.europe-west1.run.app';
+const API_BASE = 'http://localhost:8080';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -16,8 +20,21 @@ function App() {
   const [sentiment, setSentiment] = useState<SentimentResponse | null>(null)
   const [recommendations, setRecommendations] = useState<RecommendationResponse | null>(null)
   const [sideEffects, setSideEffects] = useState<SideEffectsResponse | null>(null)
+  const [drugSummary, setDrugSummary] = useState<DrugSummaryData | null>(null)
   const [loading, setLoading] = useState(false)
-  const [activeTab, setActiveTab] = useState<'sentiment' | 'recommendations' | 'side-effects'>('sentiment')
+  const [activeTab, setActiveTab] = useState<'summary' | 'sentiment' | 'recommendations' | 'side-effects'>('summary')
+
+  // Function to find drug summary from local JSON data
+  const findDrugSummary = (drugName: string): DrugSummaryData | null => {
+    const summariesData = drugSummariesData as unknown as DrugSummariesData;
+    const normalizedName = drugName.toLowerCase().trim();
+    
+    return summariesData.drug_summaries.find(summary => 
+      summary.drug_name.toLowerCase() === normalizedName ||
+      summary.drug_name.toLowerCase().includes(normalizedName) ||
+      normalizedName.includes(summary.drug_name.toLowerCase())
+    ) || null;
+  };
 
   const searchDrugs = async () => {
     if (!searchQuery.trim()) return;
@@ -37,6 +54,10 @@ function App() {
   const selectDrug = async (drug: Drug) => {
     setSelectedDrug(drug);
     setLoading(true);
+    
+    // Get drug summary from local JSON (no API call needed)
+    const summary = findDrugSummary(drug.name);
+    setDrugSummary(summary);
     
     try {
       // Fetch all drug details in parallel
@@ -144,6 +165,12 @@ function App() {
             {/* Tabs */}
             <div className="tabs">
               <button 
+                className={`tab ${activeTab === 'summary' ? 'active' : ''}`}
+                onClick={() => setActiveTab('summary')}
+              >
+                Community Insights
+              </button>
+              <button 
                 className={`tab ${activeTab === 'sentiment' ? 'active' : ''}`}
                 onClick={() => setActiveTab('sentiment')}
               >
@@ -165,6 +192,13 @@ function App() {
 
             {/* Tab Content */}
             <div className="tab-content">
+              {activeTab === 'summary' && (
+                <DrugSummary
+                  drugName={selectedDrug.name}
+                  summaryData={drugSummary}
+                />
+              )}
+
               {activeTab === 'sentiment' && sentiment && (
                 <div className="sentiment-content">
                   <SentimentSummary

@@ -43,4 +43,35 @@ export interface SideEffectsResponse {
   drug_name: string;
   common_side_effects: SideEffect[];
   serious_side_effects: SideEffect[];
+}
+
+export interface DrugSummaryData {
+  drug_name: string;
+  total_posts: number;
+  summary: string;
+  sentiment_analysis: {
+    average_positive: number;
+    average_neutral: number;
+    average_negative: number;
+  };
+  key_themes: string[];
+  subreddit_distribution: Record<string, number>;
+  post_examples: {
+    positive_experiences: string[];
+    neutral_discussions: string[];
+    negative_experiences: string[];
+  };
+  analysis_date: string;
+  error?: string;
+}
+
+export interface DrugSummariesData {
+  metadata: {
+    total_drugs_analyzed: number;
+    total_posts_across_all_drugs: number;
+    generation_date: string;
+    data_source: string;
+    analysis_description: string;
+  };
+  drug_summaries: DrugSummaryData[];
 } 
