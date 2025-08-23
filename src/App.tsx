@@ -4,9 +4,9 @@ import { SentimentTrendChart, SentimentDistribution } from './components/Sentime
 import { SentimentSummary } from './components/SentimentSummary'
 import { LoadingSpinner } from './components/LoadingSpinner'
 import { AutocompleteInput } from './components/AutocompleteInput'
-import type { Drug, SearchResponse, SentimentResponse, Recommendation, RecommendationResponse, SideEffect, SideEffectsResponse } from './types/ApiTypes';
+import type { Drug, SearchResponse, SentimentResponse, RecommendationResponse, SideEffectsResponse } from './types/ApiTypes';
 
-const API_BASE = 'http://localhost:8000';
+const API_BASE = 'http://localhost:8080';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -69,29 +69,39 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
+        <div className="app-header-top">
+          <div className="brand-name">RxU</div>
+        </div>
+        
         <div className="app-header-content">
-          <h1>RxU</h1>
-          <p className="app-header-description">RxU is a tool that helps you find the best drug for your needs.</p>
+          <div className="hero">
+            <h1 className="hero-title">Discover drug insights with real-world sentiment</h1>
+            <p className="app-header-description">
+              We merge data and technology to help you research medications more confidently.
+            </p>
+
+            {/* Search Section (inside hero) */}
+            <form onSubmit={handleSearch} className="search-form hero-search">
+              <div className="search-pill">
+                <AutocompleteInput
+                  value={searchQuery}
+                  onChange={setSearchQuery}
+                  onSubmit={searchDrugs}
+                  placeholder="Search for a drug..."
+                  className="pill-input"
+                  disabled={loading}
+                />
+                <button type="submit" disabled={loading} className="pill-button">
+                  {loading ? 'Searching...' : 'Search'}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </header>
 
       <main className="app-main">
-        {/* Search Section */}
-        <section className="search-section">
-          <form onSubmit={handleSearch} className="search-form">
-            <AutocompleteInput
-              value={searchQuery}
-              onChange={setSearchQuery}
-              onSubmit={searchDrugs}
-              placeholder="Search for a drug..."
-              className="search-input"
-              disabled={loading}
-            />
-            <button type="submit" disabled={loading} className="search-button">
-              {loading ? 'Searching...' : 'Search'}
-            </button>
-          </form>
-        </section>
+        {/* Results remain below hero */}
 
         {/* Search Results */}
         {searchResults.length > 0 && (
