@@ -370,7 +370,7 @@
     {
       "drug_name": "bevacizumab",
       "total_posts": 100,
-      "summary": "Analysis of 100 social media posts about bevacizumab. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Livimmune.",
+      "summary": "Analysis of 100 social media posts about bevacizumab. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Livimmune.",
       "sentiment_analysis": {
         "average_positive": 0.209,
         "average_neutral": 0.625,
@@ -473,7 +473,7 @@
     {
       "drug_name": "biotin",
       "total_posts": 81,
-      "summary": "Analysis of 81 social media posts about biotin. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/tressless.",
+      "summary": "Analysis of 81 social media posts about biotin. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/tressless.",
       "sentiment_analysis": {
         "average_positive": 0.279,
         "average_neutral": 0.442,
@@ -731,7 +731,7 @@
     {
       "drug_name": "cetuximab",
       "total_posts": 66,
-      "summary": "Analysis of 66 social media posts about cetuximab. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/coloncancer.",
+      "summary": "Analysis of 66 social media posts about cetuximab. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/coloncancer.",
       "sentiment_analysis": {
         "average_positive": 0.142,
         "average_neutral": 0.642,
@@ -789,7 +789,7 @@
     {
       "drug_name": "cholecalciferol",
       "total_posts": 100,
-      "summary": "Analysis of 100 social media posts about cholecalciferol. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/VitaminD.",
+      "summary": "Analysis of 100 social media posts about cholecalciferol. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/VitaminD.",
       "sentiment_analysis": {
         "average_positive": 0.211,
         "average_neutral": 0.535,
@@ -847,7 +847,7 @@
     {
       "drug_name": "choline",
       "total_posts": 71,
-      "summary": "Analysis of 71 social media posts about choline. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/MTHFR.",
+      "summary": "Analysis of 71 social media posts about choline. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/MTHFR.",
       "sentiment_analysis": {
         "average_positive": 0.28,
         "average_neutral": 0.509,
@@ -960,7 +960,7 @@
     {
       "drug_name": "creatine",
       "total_posts": 97,
-      "summary": "Analysis of 97 social media posts about creatine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Supplements.",
+      "summary": "Analysis of 97 social media posts about creatine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Supplements.",
       "sentiment_analysis": {
         "average_positive": 0.254,
         "average_neutral": 0.538,
@@ -1192,7 +1192,7 @@
     {
       "drug_name": "empagliflozin",
       "total_posts": 85,
-      "summary": "Analysis of 85 social media posts about empagliflozin. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/thePharmacy.",
+      "summary": "Analysis of 85 social media posts about empagliflozin. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/thePharmacy.",
       "sentiment_analysis": {
         "average_positive": 0.196,
         "average_neutral": 0.638,
@@ -1337,7 +1337,7 @@
     {
       "drug_name": "erythropoietin",
       "total_posts": 99,
-      "summary": "Analysis of 99 social media posts about erythropoietin. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/AskDocs.",
+      "summary": "Analysis of 99 social media posts about erythropoietin. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/AskDocs.",
       "sentiment_analysis": {
         "average_positive": 0.182,
         "average_neutral": 0.612,
@@ -1624,7 +1624,7 @@
     {
       "drug_name": "glutathione",
       "total_posts": 78,
-      "summary": "Analysis of 78 social media posts about glutathione. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Supplements.",
+      "summary": "Analysis of 78 social media posts about glutathione. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Supplements.",
       "sentiment_analysis": {
         "average_positive": 0.297,
         "average_neutral": 0.479,
@@ -1968,7 +1968,7 @@
     {
       "drug_name": "l-alanine",
       "total_posts": 100,
-      "summary": "Analysis of 100 social media posts about l-alanine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Biohackers.",
+      "summary": "Analysis of 100 social media posts about l-alanine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Biohackers.",
       "sentiment_analysis": {
         "average_positive": 0.261,
         "average_neutral": 0.552,
@@ -2164,7 +2164,7 @@
     {
       "drug_name": "l-cysteine",
       "total_posts": 100,
-      "summary": "Analysis of 100 social media posts about l-cysteine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Mcat.",
+      "summary": "Analysis of 100 social media posts about l-cysteine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Mcat.",
       "sentiment_analysis": {
         "average_positive": 0.238,
         "average_neutral": 0.564,
@@ -2280,7 +2280,7 @@
     {
       "drug_name": "l-histidine",
       "total_posts": 61,
-      "summary": "Analysis of 61 social media posts about l-histidine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/eczema.",
+      "summary": "Analysis of 61 social media posts about l-histidine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/eczema.",
       "sentiment_analysis": {
         "average_positive": 0.224,
         "average_neutral": 0.59,
@@ -2338,7 +2338,7 @@
     {
       "drug_name": "l-leucine",
       "total_posts": 76,
-      "summary": "Analysis of 76 social media posts about l-leucine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Supplements.",
+      "summary": "Analysis of 76 social media posts about l-leucine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Supplements.",
       "sentiment_analysis": {
         "average_positive": 0.193,
         "average_neutral": 0.642,
@@ -2396,7 +2396,7 @@
     {
       "drug_name": "l-methionine",
       "total_posts": 100,
-      "summary": "Analysis of 100 social media posts about l-methionine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/MTHFR.",
+      "summary": "Analysis of 100 social media posts about l-methionine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/MTHFR.",
       "sentiment_analysis": {
         "average_positive": 0.183,
         "average_neutral": 0.58,
@@ -2454,7 +2454,7 @@
     {
       "drug_name": "l-ornithine",
       "total_posts": 47,
-      "summary": "Analysis of 47 social media posts about l-ornithine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Biohackers.",
+      "summary": "Analysis of 47 social media posts about l-ornithine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Biohackers.",
       "sentiment_analysis": {
         "average_positive": 0.236,
         "average_neutral": 0.577,
@@ -2512,7 +2512,7 @@
     {
       "drug_name": "l-phenylalanine",
       "total_posts": 100,
-      "summary": "Analysis of 100 social media posts about l-phenylalanine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/NooTopics.",
+      "summary": "Analysis of 100 social media posts about l-phenylalanine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/NooTopics.",
       "sentiment_analysis": {
         "average_positive": 0.216,
         "average_neutral": 0.597,
@@ -2570,7 +2570,7 @@
     {
       "drug_name": "l-serine",
       "total_posts": 90,
-      "summary": "Analysis of 90 social media posts about l-serine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/NooTopics.",
+      "summary": "Analysis of 90 social media posts about l-serine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/NooTopics.",
       "sentiment_analysis": {
         "average_positive": 0.197,
         "average_neutral": 0.658,
@@ -2628,7 +2628,7 @@
     {
       "drug_name": "l-threonine",
       "total_posts": 37,
-      "summary": "Analysis of 37 social media posts about l-threonine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Mcat.",
+      "summary": "Analysis of 37 social media posts about l-threonine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Mcat.",
       "sentiment_analysis": {
         "average_positive": 0.194,
         "average_neutral": 0.672,
@@ -2682,7 +2682,7 @@
     {
       "drug_name": "l-tryptophan",
       "total_posts": 100,
-      "summary": "Analysis of 100 social media posts about l-tryptophan. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/insomnia.",
+      "summary": "Analysis of 100 social media posts about l-tryptophan. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/insomnia.",
       "sentiment_analysis": {
         "average_positive": 0.231,
         "average_neutral": 0.532,
@@ -2740,7 +2740,7 @@
     {
       "drug_name": "l-tyrosine",
       "total_posts": 67,
-      "summary": "Analysis of 67 social media posts about l-tyrosine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Supplements.",
+      "summary": "Analysis of 67 social media posts about l-tyrosine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Supplements.",
       "sentiment_analysis": {
         "average_positive": 0.23,
         "average_neutral": 0.515,
@@ -2798,7 +2798,7 @@
     {
       "drug_name": "l-valine",
       "total_posts": 43,
-      "summary": "Analysis of 43 social media posts about l-valine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Supplements.",
+      "summary": "Analysis of 43 social media posts about l-valine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Supplements.",
       "sentiment_analysis": {
         "average_positive": 0.211,
         "average_neutral": 0.655,
@@ -2853,7 +2853,7 @@
     {
       "drug_name": "leuprolide",
       "total_posts": 100,
-      "summary": "Analysis of 100 social media posts about leuprolide. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/IVF.",
+      "summary": "Analysis of 100 social media posts about leuprolide. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/IVF.",
       "sentiment_analysis": {
         "average_positive": 0.217,
         "average_neutral": 0.585,
@@ -2968,7 +2968,7 @@
     {
       "drug_name": "lipoic acid",
       "total_posts": 100,
-      "summary": "Analysis of 100 social media posts about lipoic acid. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Nutraceuticalscience.",
+      "summary": "Analysis of 100 social media posts about lipoic acid. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Nutraceuticalscience.",
       "sentiment_analysis": {
         "average_positive": 0.174,
         "average_neutral": 0.631,
@@ -3366,7 +3366,7 @@
     {
       "drug_name": "n-acetylcysteine",
       "total_posts": 100,
-      "summary": "Analysis of 100 social media posts about n-acetylcysteine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Biohackers.",
+      "summary": "Analysis of 100 social media posts about n-acetylcysteine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Biohackers.",
       "sentiment_analysis": {
         "average_positive": 0.23,
         "average_neutral": 0.575,
@@ -3424,7 +3424,7 @@
     {
       "drug_name": "nadh",
       "total_posts": 100,
-      "summary": "Analysis of 100 social media posts about nadh. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/OKRABLEACH.",
+      "summary": "Analysis of 100 social media posts about nadh. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/OKRABLEACH.",
       "sentiment_analysis": {
         "average_positive": 0.225,
         "average_neutral": 0.568,
@@ -3765,7 +3765,7 @@
     {
       "drug_name": "phosphatidylserine",
       "total_posts": 100,
-      "summary": "Analysis of 100 social media posts about phosphatidylserine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Biohackers.",
+      "summary": "Analysis of 100 social media posts about phosphatidylserine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Biohackers.",
       "sentiment_analysis": {
         "average_positive": 0.286,
         "average_neutral": 0.475,
@@ -3987,7 +3987,7 @@
     {
       "drug_name": "riboflavin",
       "total_posts": 58,
-      "summary": "Analysis of 58 social media posts about riboflavin. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/MTHFR.",
+      "summary": "Analysis of 58 social media posts about riboflavin. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/MTHFR.",
       "sentiment_analysis": {
         "average_positive": 0.232,
         "average_neutral": 0.532,
@@ -4045,7 +4045,7 @@
     {
       "drug_name": "risankizumab",
       "total_posts": 49,
-      "summary": "Analysis of 49 social media posts about risankizumab. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/CrohnsDisease.",
+      "summary": "Analysis of 49 social media posts about risankizumab. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/CrohnsDisease.",
       "sentiment_analysis": {
         "average_positive": 0.186,
         "average_neutral": 0.581,
@@ -4103,7 +4103,7 @@
     {
       "drug_name": "s-adenosylmethionine",
       "total_posts": 47,
-      "summary": "Analysis of 47 social media posts about s-adenosylmethionine. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Nutraceuticalscience.",
+      "summary": "Analysis of 47 social media posts about s-adenosylmethionine. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Nutraceuticalscience.",
       "sentiment_analysis": {
         "average_positive": 0.148,
         "average_neutral": 0.629,
@@ -4160,7 +4160,7 @@
     {
       "drug_name": "semaglutide",
       "total_posts": 91,
-      "summary": "Analysis of 91 social media posts about semaglutide. User sentiment is mixed with discussions primarily focused on side effect, side effects, pain. Most discussions occur in r/Semaglutide.",
+      "summary": "Analysis of 91 social media posts about semaglutide. User sentiment is mixed with discussions primarily focused on side effects and pain. Most discussions occur in r/Semaglutide.",
       "sentiment_analysis": {
         "average_positive": 0.246,
         "average_neutral": 0.46,
