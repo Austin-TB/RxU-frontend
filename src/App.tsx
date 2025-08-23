@@ -10,8 +10,8 @@ import type { Drug, SearchResponse, SentimentResponse, RecommendationResponse, S
 // Import the drug summaries JSON data
 import drugSummariesData from './data/drug_social_media_summaries.json';
 
-// const API_BASE = 'https://rxuu-backend-306624049631.europe-west1.run.app';
-const API_BASE = 'http://localhost:8080';
+const API_BASE = 'https://rxuu-backend-306624049631.europe-west1.run.app';
+// const API_BASE = 'http://localhost:8080';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('')
