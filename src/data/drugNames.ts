@@ -70,6 +70,7 @@ export const drugNames = [
   "Natalizumab",
   "Octreotide",
   "Omeprazole",
+  "Paracetamol",
   "Pembrolizumab",
   "Phosphatidylserine",
   "Pyridoxine",
