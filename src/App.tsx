@@ -6,7 +6,7 @@ import { LoadingSpinner } from './components/LoadingSpinner'
 import { AutocompleteInput } from './components/AutocompleteInput'
 import type { Drug, SearchResponse, SentimentResponse, RecommendationResponse, SideEffectsResponse } from './types/ApiTypes';
 
-const API_BASE = 'https://rxuu-backend-306624049631.europe-west1.run.app:8080';
+const API_BASE = 'https://rxuu-backend-306624049631.europe-west1.run.app';
 // const API_BASE = 'http://localhost:8080';
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
       setSearchResults(data.results);
     } catch (error) {
       console.error('Search failed:', error);
-      alert('Search failed. Make sure the backend is running on port 8000.');
+      alert('Search failed. Please check your internet connection and try again.');
     }
     setLoading(false);
   };
